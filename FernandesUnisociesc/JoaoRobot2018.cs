@@ -12,36 +12,82 @@ namespace FernandesUnisociesc
 {
     public class JoaoRobot2018 : AdvancedRobot
     {
+        private int others;
+        private static int Fernandes;
+        private bool stopWhenSeeRobot;
+
         public override void Run()
         {
+            others = Others;
 
-            //TurnRadarLeftRadians(Math.PI);
-            SetTurnRadarRightRadians(Double.PositiveInfinity);
+            goFernandes();
+
+            int gunIncrement = 3;
 
             while (true)
             {
-                //SetAhead(100);
-                //SetTurnLeft(50);
-                SetTurnRadarLeft(10);
-                SetTurnGunLeft(5);
-                //SetTurnGunLeft(360);
-                //IsAdjustRadarForGunTurn = true;
-                Execute();
+                /*SetAhead(200);
+                SetTurnLeft(50);
+                Execute();*/
+                
+                for (int i = 0; i < 30; i++)
+                {
+                    TurnGunLeft(gunIncrement);
+                }
+                gunIncrement *= -1;
             }
+        }
+
+        public void goFernandes()
+        {
+
+            stopWhenSeeRobot = false;
+
+            TurnRight(Utils.NormalRelativeAngleDegrees(Fernandes - Heading));
+
+            stopWhenSeeRobot = true;
+
+            while (true)
+            {
+            SetAhead(200);
+            SetTurnRight(50);
+            SetTurnGunLeft(90);
+            Execute();
+            }
+
+            //TurnGunLeft(90);
         }
 
         public override void OnScannedRobot(ScannedRobotEvent evnt)
         {
-            double GetRadarTurnRemainingRadians = 0;
-            SetTurnRadarLeftRadians(GetRadarTurnRemainingRadians);
-            Fire(1);
-            Execute();
+            if (stopWhenSeeRobot)
+            {
+                Stop();
+                smartFire(evnt.Distance);
+                Scan();
+                Resume();
+                Execute();
+            }
+            else
+            {
+                smartFire(evnt.Distance);
+            }
         }
 
-        public override void OnHitByBullet(HitByBulletEvent evnt)
+        public void smartFire(double robotDistance)
         {
-            SetAhead(200);
-            SetTurnLeft(150);
+            if (robotDistance > 200 || Energy < 15)
+            {
+                Fire(1);
+            }
+            else if (robotDistance > 50)
+            {
+                Fire(2);
+            }
+            else
+            {
+                Fire(3);
+            }
         }
     }
 }
