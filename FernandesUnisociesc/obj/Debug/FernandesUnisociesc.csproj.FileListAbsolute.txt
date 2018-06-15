@@ -6,3 +6,10 @@ C:\Users\121710733\Documents\GitHub\FernandesUnisociesc\FernandesUnisociesc\obj\
 C:\Users\121710733\Documents\GitHub\FernandesUnisociesc\FernandesUnisociesc\obj\Debug\FernandesUnisociesc.csproj.CoreCompileInputs.cache
 C:\Users\121710733\Documents\GitHub\FernandesUnisociesc\FernandesUnisociesc\obj\Debug\FernandesUnisociesc.dll
 C:\Users\121710733\Documents\GitHub\FernandesUnisociesc\FernandesUnisociesc\obj\Debug\FernandesUnisociesc.pdb
+C:\Users\121710733\Desktop\FernandesUnisociesc\FernandesUnisociesc\bin\Debug\FernandesUnisociesc.dll
+C:\Users\121710733\Desktop\FernandesUnisociesc\FernandesUnisociesc\bin\Debug\FernandesUnisociesc.pdb
+C:\Users\121710733\Desktop\FernandesUnisociesc\FernandesUnisociesc\bin\Debug\robocode.xml
+C:\Users\121710733\Desktop\FernandesUnisociesc\FernandesUnisociesc\obj\Debug\FernandesUnisociesc.csprojResolveAssemblyReference.cache
+C:\Users\121710733\Desktop\FernandesUnisociesc\FernandesUnisociesc\obj\Debug\FernandesUnisociesc.csproj.CoreCompileInputs.cache
+C:\Users\121710733\Desktop\FernandesUnisociesc\FernandesUnisociesc\obj\Debug\FernandesUnisociesc.dll
+C:\Users\121710733\Desktop\FernandesUnisociesc\FernandesUnisociesc\obj\Debug\FernandesUnisociesc.pdb
