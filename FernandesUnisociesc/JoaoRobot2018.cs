@@ -12,65 +12,54 @@ namespace FernandesUnisociesc
 {
     public class JoaoRobot2018 : AdvancedRobot
     {
-        private int others;
-        private static int Fernandes;
-        private bool stopWhenSeeRobot;
+        private bool peek;
+        private double moveAmount;
 
         public override void Run()
         {
-            others = Others;
+            moveAmount = Math.Max(BattleFieldWidth, BattleFieldHeight);
 
-            goFernandes();
+            peek = false;
 
-            int gunIncrement = 3;
+            TurnLeft(Heading % 90);
+            Ahead(moveAmount);
 
-            while (true)
-            {
-                /*SetAhead(200);
-                SetTurnLeft(50);
-                Execute();*/
-                
-                for (int i = 0; i < 30; i++)
-                {
-                    TurnGunLeft(gunIncrement);
-                }
-                gunIncrement *= -1;
-            }
-        }
-
-        public void goFernandes()
-        {
-
-            stopWhenSeeRobot = false;
-
-            TurnRight(Utils.NormalRelativeAngleDegrees(Fernandes - Heading));
-
-            stopWhenSeeRobot = true;
+            peek = true;
+            TurnGunRight(90);
+            TurnRight(90);
 
             while (true)
             {
-            SetAhead(200);
-            SetTurnRight(50);
-            SetTurnGunLeft(90);
-            Execute();
-            }
 
-            //TurnGunLeft(90);
+                peek = true;
+
+                Ahead(moveAmount);
+ 
+                peek = false;
+
+                TurnRight(90);
+            }
         }
 
-        public override void OnScannedRobot(ScannedRobotEvent evnt)
+        public override void OnHitRobot(HitRobotEvent e)
         {
-            if (stopWhenSeeRobot)
+            if (e.Bearing > -90 && e.Bearing < 90)
             {
-                Stop();
-                smartFire(evnt.Distance);
-                Scan();
-                Resume();
-                Execute();
-            }
+                Back(100);
+            } 
             else
             {
-                smartFire(evnt.Distance);
+                Ahead(100);
+            }
+        }
+
+        public override void OnScannedRobot(ScannedRobotEvent e)
+        {
+            smartFire(e.Distance);
+
+            if (peek)
+            {
+                Scan();
             }
         }
 
